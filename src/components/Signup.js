@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
@@ -18,20 +18,23 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
     palette: {
-      primary: {
-        main: "#ce93d8",
-      },
-      secondary: {
-        main: '#84c887',
-      },
-      error: {
-          main: "#f6a5c0"
-      },
-      warning: {
-          main: "#ffbba7"
-      }
+        background: {
+            default: "#ffebee"
+        },
+        primary: {
+            main: "#d7a8df",
+        },
+        secondary: {
+            main: '#84c887',
+        },
+        error: {
+            main: "#f6a5c0"
+        },
+        warning: {
+            main: "#ffbba7"
+        }
     }
-  });
+});
 
 function SignUpModel() {
     const [isOpen, setOpen] = useState(false);
@@ -42,162 +45,178 @@ function SignUpModel() {
     const [birthDate, setBirthDate] = useState('');
     const [occupation, setOccupation] = useState('');
 
-    async function signUpHandler(){
-        // fetch /api/user
-        // const response = fetch("/api/user", {
-        //     method: "post",
-        //     body: JSON.stringify({
-        //         firstName: firstName,
-        //         lastName: lastName,
-        //         email: email,
-        //         password: password,
-        //         birthDate: new Date(birthDate),
-        //         occupation: occupation
-        //     })
-        // }).then(r => r.json);
+    async function handleSignUp() {
+        // if ((password!== "") & (password === confirmPassword)) {
 
-        console.log("Sign Up User")
-        setOpen(false)
+        // }
+        const response = await fetch("/api/user", {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: password,
+                birthDate: birthDate,
+                occupation: occupation
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.result === "success") {
+            setOpen(false)
+            console.log("Successfully signup user")
+            // success pop-up
+        } else {
+            // error pop-up
+            console.log("Failed signup user")
+        }
     };
 
-   let SignUpButton = (
-   <Button
-    fullWidth
-    onClick={()=>setOpen(true)}
-    >
-    Sign Up
-    </Button>
-    ) 
-    
+    let SignUpButton = (
+        <Button
+            fullWidth
+            onClick={() => setOpen(true)}
+        >
+            Sign Up
+        </Button>
+    )
+
     return (
         <ThemeProvider theme={theme}>
             <Modal
                 open={isOpen}
-                onClose={()=>setOpen(false)}
+                onClose={() => setOpen(false)}
             >
-            <div fluid style={{
+                <div fluid style={{
                     backgroundColor: "white",
                     width: "500px",
                     margin: "20vh auto",
                     padding: "30px"
                 }}>
-                <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                    <Typography variant='h5'
-                    sx={{textAlign: "center",
-                    fontWeight: "bold"}}>
-                    Sign Up
-                    </Typography>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <Typography variant='h5'
+                                sx={{
+                                    textAlign: "center",
+                                    fontWeight: "bold"
+                                }}>
+                                Sign Up
+                            </Typography>
                         </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <TextField
-                        name="firstName"
-                        required
-                        fullWidth
-                        id="firstName"
-                        label="First Name"
-                        value={firstName}
-                        onChange={(event)=>setFirstName(event.target.value)}
-                        autoFocus>
-                        </TextField>
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <TextField
-                        name="lastName"
-                        required
-                        fullWidth
-                        id="lastName"
-                        label="Last Name"
-                        value={lastName}
-                        onChange={(event)=>setLastName(event.target.value)}
-                        >
-                        </TextField>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                        name="email"
-                        // varient="filled"
-                        required
-                        fullWidth
-                        id="email"
-                        label="Email Address"
-                        value={email}
-                        autoComplete="email"
-                        onChange={(event)=>setEmail(event.target.value)}
-                        >
-                        </TextField>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                        name="password"
-                        // varient="filled"
-                        required
-                        fullWidth
-                        id="password"
-                        label="Password"
-                        type="password"
-                        value={password}
-                        autoComplete="new-password"
-                        onChange={(event)=>setPassword(event.target.value)}
-                        >
-                        </TextField>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <LocalizationProvider dateAdapter={DateAdapter}>
-                        <DatePicker
-                        label="birthDate"
-                        value={birthDate}
-                        onChange={(event) => {setBirthDate(event.target.value);}}
-                        renderInput={(params) => <TextField {...params}/>}
-                        />
-                        </LocalizationProvider>                        
-                    </Grid>
-
-                    <Grid item xs={12}>
-                        <FormControl 
-                        required 
-                        fullWidth
-                        >
-                        <InputLabel id="occupation">
-                        Occupation
-                        </InputLabel>
-                            <Select
-                            labelId="occupation"
-                            id="occupation"
-                            value={occupation}
-                            label="Occupation"
-                            onChange={(event)=>setOccupation(event.target.value)}
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                name="firstName"
+                                required
+                                fullWidth
+                                id="firstName"
+                                label="First Name"
+                                value={firstName}
+                                onChange={(event) => setFirstName(event.target.value)}
+                                autoFocus>
+                            </TextField>
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                name="lastName"
+                                required
+                                fullWidth
+                                id="lastName"
+                                label="Last Name"
+                                value={lastName}
+                                onChange={(event) => setLastName(event.target.value)}
                             >
-                            <MenuItem value="">
-                            <em>None</em>
-                            </MenuItem>
-                            <MenuItem value={"Dog Lover"}>Dog Lover</MenuItem>
-                            <MenuItem value={"Cat Lover"}>Cat Lover</MenuItem>
-                            <MenuItem value={"Shabu Lover"}>Shabu Lover</MenuItem>
-                            </Select>
-                        </FormControl>
-                    </Grid>
+                            </TextField>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                name="email"
+                                // varient="filled"
+                                required
+                                fullWidth
+                                id="email"
+                                label="Email Address"
+                                value={email}
+                                autoComplete="email"
+                                onChange={(event) => setEmail(event.target.value)}
+                            >
+                            </TextField>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                name="password"
+                                // varient="filled"
+                                required
+                                fullWidth
+                                id="password"
+                                label="Password"
+                                type="password"
+                                value={password}
+                                autoComplete="new-password"
+                                onChange={(event) => setPassword(event.target.value)}
+                            >
+                            </TextField>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <LocalizationProvider dateAdapter={DateAdapter}>
+                                <DatePicker
+                                    disableFuture
+                                    label="birthDate"
+                                    value={birthDate}
+                                    onChange={(value) => setBirthDate(value)}
+                                    renderInput={(params) => <TextField {...params} />}
+                                />
+                            </LocalizationProvider>
+                        </Grid>
 
-                <Grid item xs={6}>
-                    <Button
-                    fullWidth
-                    variant="contained"
-                    color="error"
-                    onClick={()=>setOpen(false)}>
-                    Cancel
-                    </Button>
-                </Grid>
-                <Grid item xs={6}>
-                    <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    onClick={signUpHandler}>
-                    Sign Up
-                    </Button>
-                </Grid>
-                </Grid>
-                </div> 
+                        <Grid item xs={12}>
+                            <FormControl
+                                required
+                                fullWidth
+                            >
+                                <InputLabel id="occupation">
+                                    Occupation
+                                </InputLabel>
+                                <Select
+                                    labelId="occupation"
+                                    id="occupation"
+                                    value={occupation}
+                                    label="Occupation"
+                                    onChange={(event) => setOccupation(event.target.value)}
+                                >
+                                    <MenuItem value="">
+                                        <em>None</em>
+                                    </MenuItem>
+                                    <MenuItem value={"Dog Lover"}>Dog Lover</MenuItem>
+                                    <MenuItem value={"Cat Lover"}>Cat Lover</MenuItem>
+                                    <MenuItem value={"Shabu Lover"}>Shabu Lover</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Grid>
+
+                        <Grid item xs={6}>
+                            <Button
+                                fullWidth
+                                variant="contained"
+                                color="error"
+                                onClick={() => setOpen(false)}>
+                                Cancel
+                            </Button>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                onClick={handleSignUp}>
+                                Sign Up
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </div>
             </Modal>
             {SignUpButton}
         </ThemeProvider>

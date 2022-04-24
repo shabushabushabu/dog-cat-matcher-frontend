@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -23,7 +24,7 @@ const theme = createTheme({
       default: "#ffebee"
     },
     primary: {
-      main: "#ce93d8",
+      main: "#d7a8df",
     },
     secondary: {
       main: '#84c887',
@@ -40,31 +41,46 @@ const theme = createTheme({
 function SignInModel() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   async function handleSubmit() {
-    if ((password!== "") & (password === confirmPassword)) {
 
-    }
-    fetch /api/login
-    const response = await fetch("/api/login", {
+    if ((email !== "") && (password !== "")) {
+
+      // fetch /api/login
+
+      const response = await fetch("/api/login", {
         method: "post",
-        headers:{
-          "Content_Type": "application/json"
+        headers: {
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            email: email,
-            password: password
+          email: email,
+          password: password
         })
-    })
-    const data = await response.json()
+      })
 
-    // check if success data.result === "success" => redirect
+      const data = await response.json()
+      console.log(data)
 
-    console.log("login")
+      if (data.message === "success") {
+        console.log("login");
+        // save JWT token to local storage
+        window.localStorage.setItem("userid", "shabu");
+        window.localStorage.setItem("usertoken", "112");
 
-    // save JWT token to local storage
-    window.localStorage.setItem("userid", "shabu")
-    window.localStorage.setItem("usertoken", "112")
+        navigate("/home")
+
+      } else {
+        console.log("no")
+
+      }
+
+    } else {
+      console.log("No fill")
+    }
+
+
   }
 
   return (
@@ -98,7 +114,7 @@ function SignInModel() {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <Box component="form" noValidate onSubmit={loginHandler} sx={{ mt: 1 }}>
+            <Box component="form" noValidate sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
                 required
@@ -124,9 +140,10 @@ function SignInModel() {
                 onChange={(event) => setPassword(event.target.value)}
               />
               <Button
-                type="submit"
+                // type="submit"
                 fullWidth
                 variant="contained"
+                onClick={handleSubmit}
                 sx={{ mt: 3, mb: 2 }}
               >
                 Sign In
