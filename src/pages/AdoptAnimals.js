@@ -18,7 +18,7 @@ const theme = createTheme({
       default: "#ffebee"
     },
     primary: {
-      main: "#ce93d8",
+      main: "#d7a8df",
     },
     secondary: {
       main: '#84c887',
@@ -80,7 +80,7 @@ function AdoptAnimalsPage() {
               display: "flex",
               flexDirection: "row",
               flexWrap: "wrap",
-              backgroundColor: "purple",
+              // backgroundColor: "purple",
               alignContent: "center",
               justifyContent: "center"
             }}>

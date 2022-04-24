@@ -15,10 +15,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme({
     palette: {
         background: {
-            default: "#ffebee"
+            default: "#ffebee",
+            light: "#ffeff1"
         },
         primary: {
-            main: "#ce93d8",
+            main: "#d7a8df", //  #ce93d8 #d7a8df #dfb9e5
         },
         secondary: {
             main: '#84c887',
@@ -48,33 +49,24 @@ function AnimalCard(props) {
     return (
         <ThemeProvider theme={theme}>
             <Card
-                sx={{ width: 250, m: 3, textAlign: "left" }}>
+                sx={{ width: 250, m: 3, textAlign: "left", bgcolor:"background.light" }}>
                 <CardHeader
                     avatar={
-                        <Avatar sx={{ bgcolor: "primary.main" }} aria-label="recipe">
+                        <Avatar sx={{ bgcolor: "primary.dark" }} aria-label="initial-animal">
                             {props.name.charAt(0)}
                         </Avatar>
                     }
-
                     title={props.name}
                 //   subheader="September 14, 2016"
-
-
                 />
+
                 <CardMedia
                     component="img"
                     height="194"
                     image={props.photoUrl}
                     alt="animal-image"
                 />
-                <CardContent>
-                    <Typography variant="body2" color="text.primary">
-                        {props.description}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        {props.tags.map(tag => "#" + tag + " ")}
-                    </Typography>
-                </CardContent>
+
                 <CardActions disableSpacing>
                     <BootstrapTooltip title="Adopt Me!">
                         <IconButton aria-label="adopt" size="medium" color="primary">
@@ -82,6 +74,16 @@ function AnimalCard(props) {
                         </IconButton>
                     </BootstrapTooltip>
                 </CardActions>
+
+                <CardContent
+                    sx={{ paddingTop: 0 }}>
+                    <Typography variant="body2" color="text.primary">
+                        {props.description}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                        {props.tags.map(tag => "#" + tag + " ")}
+                    </Typography>
+                </CardContent>
             </Card>
         </ThemeProvider>
     );
