@@ -18,6 +18,8 @@ import CEOImage from "../figures/IMG_4700.JPG"
 
 import SignUpModel from '../components/Signup';
 
+import {saveTokens} from '../functions/Authen';
+
 const theme = createTheme({
   palette: {
     background: {
@@ -61,18 +63,17 @@ function SignInModel() {
       })
 
       const data = await response.json()
-      console.log(data)
+      console.log(data);
 
       if (data.message === "success") {
         console.log("login");
         // save JWT token to local storage
-        window.localStorage.setItem("userid", "shabu");
-        window.localStorage.setItem("usertoken", "112");
+        saveTokens(email, data.token);
 
-        navigate("/home")
+        navigate("/home");
 
       } else {
-        console.log("no")
+        console.log("no");
 
       }
 
@@ -163,3 +164,4 @@ function SignInModel() {
 export default SignInModel;
 
 // if password correct goto home
+// difference betwee  Navigate/useNavigate

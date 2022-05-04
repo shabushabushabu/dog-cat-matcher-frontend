@@ -1,4 +1,5 @@
 import react, { Component, useState, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -6,11 +7,13 @@ import Grid from '@mui/material/Grid';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 
-import Header from "../components/Header"
-import Footer from "../components/Footer"
-import AnimalCard from "../components/AnimalCard"
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import AnimalCard from "../components/AnimalCard";
 
 import ShabuImage from "../figures/SHABU_profile3.jpg"
+
+import { isLogin } from '../functions/Authen';
 
 const theme = createTheme({
   palette: {
@@ -54,6 +57,12 @@ function AdoptAnimalsPage() {
       />
     )
   });
+
+  if (!isLogin()) {
+    return (
+      <Navigate to="/login" />
+      )
+  };
 
 
   return (

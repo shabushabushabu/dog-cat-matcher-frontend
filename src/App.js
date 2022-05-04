@@ -4,7 +4,8 @@ import {
   BrowserRouter,
   Routes,
   Route,
-  Link
+  Link,
+  Navigate
 } from 'react-router-dom';
 import './App.css';
 import HomePage from './pages/Home';
@@ -17,7 +18,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<Navigate to ="/login"/>} />
           {/* /home check if login (/ = index) -> not -> login */}
           <Route path="/login" element={<SignInSide />} />
           <Route path="/home" element={<HomePage />} />

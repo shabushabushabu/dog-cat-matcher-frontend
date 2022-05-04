@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Container from '@mui/material/Container';
@@ -22,7 +25,9 @@ import { Link } from 'react-router-dom';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import CorgiImage from "../figures/SHABU_profile4.jpg"
+import CorgiImage from "../figures/SHABU_profile4.jpg";
+
+import {removeTokens} from '../functions/Authen';
 
 const theme = createTheme({
     palette: {
@@ -30,7 +35,7 @@ const theme = createTheme({
             default: "#ffebee"
         },
         primary: {
-            main: "#ce93d8",
+            main: "#d7a8df",
         },
         secondary: {
             main: '#84c887',
@@ -50,6 +55,7 @@ function Header(props) {
     const [auth, setAuth] = useState(true);
     const [mobileOpen, setMobileOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
+    const navigate = useNavigate();
 
     const linkPages = [
         { pageName: "Home", pageUrl: "/home", pageIcon: HomeIcon },
@@ -85,6 +91,11 @@ function Header(props) {
 
     const drawerToggleHandler = () => {
         setMobileOpen(!mobileOpen);
+    };
+
+    const logOut = () => {
+        removeTokens();
+        navigate("/login");
     };
 
     const container = window !== undefined ? () => window().document.body : undefined;
@@ -144,7 +155,7 @@ function Header(props) {
                             onClose={menuCloseHandler}>
                             <MenuItem onClick={menuCloseHandler}>Profile</MenuItem>
                             <MenuItem onClick={menuCloseHandler}>Account</MenuItem>
-                            <MenuItem onClick={() => setAuth(false)}>Logout</MenuItem>
+                            <MenuItem onClick={logOut}>Logout</MenuItem>
                         </Menu>
                     </Toolbar>
                     {/* </Container> */}
