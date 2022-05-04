@@ -18,7 +18,7 @@ import CEOImage from "../figures/IMG_4700.JPG"
 
 import SignUpModel from '../components/Signup';
 
-import {saveTokens} from '../functions/Authen';
+import { saveTokens } from '../functions/Authen';
 
 const theme = createTheme({
   palette: {
@@ -60,7 +60,7 @@ function SignInModel() {
           email: email,
           password: password
         })
-      })
+      });
 
       const data = await response.json()
       console.log(data);
@@ -69,20 +69,17 @@ function SignInModel() {
         console.log("login");
         // save JWT token to local storage
         saveTokens(email, data.token);
-
         navigate("/home");
 
       } else {
         console.log("no");
-
-      }
+      };
 
     } else {
       console.log("No fill")
-    }
+    };
 
-
-  }
+  };
 
   return (
     <ThemeProvider theme={theme}>
