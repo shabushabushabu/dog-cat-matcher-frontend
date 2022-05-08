@@ -1,20 +1,18 @@
-import react, { Component, useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import Container from '@mui/material/Container';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PageCard from "../components/PageCard";
 
+import { isLogin } from '../functions/Authen';
+
 import AdoptImage from "../figures/SHABU6.jpg";
 import PostImage from "../figures/SHABU7.jpg";
 import BackgroundImage from "../figures/SHABU_bg1.jpg";
-
-import { isLogin } from '../functions/Authen';
 
 
 const theme = createTheme({
@@ -59,28 +57,28 @@ function HomePage() {
   if (!isLogin()) {
     return (
       <Navigate to="/login" />
-      )
+      // return 1 component only
+    )
+  } else {
+    return (
+      <ThemeProvider theme={theme}>
+        {/* <div style={{backgroundColor:"background.default"}}> */}
+        <Header />
+
+        <Box sx={{ p: 5 }}>
+          <Stack
+            spacing={5}
+            alignItems="center"
+            justifyContent={"center"}>
+            {pageCards}
+          </Stack>
+        </Box>
+
+        <Footer />
+        {/* </div> */}
+      </ThemeProvider>
+    )
   };
-
-
-  return (
-    <ThemeProvider theme={theme}>
-      {/* <div style={{backgroundColor:"background.default"}}> */}
-      <Header />
-
-      <Box sx={{ p: 5 }}>
-        <Stack
-          spacing={5}
-          alignItems="center"
-          justifyContent={"center"}>
-          {pageCards}
-        </Stack>
-      </Box>
-
-      <Footer />
-      {/* </div> */}
-    </ThemeProvider>
-  )
 }
 
 export default HomePage;

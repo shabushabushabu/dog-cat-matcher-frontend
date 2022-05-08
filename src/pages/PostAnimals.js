@@ -7,9 +7,9 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PostAnimalForm from "../components/PostAnimalForm";
 
-import CorgiImage from "../figures/SHABU_profile.jpg";
-
 import { isLogin } from '../functions/Authen';
+
+import CorgiImage from "../figures/SHABU_profile.jpg";
 
 
 const theme = createTheme({
@@ -39,38 +39,36 @@ function PostAnimalsPage() {
     return (
       <Navigate to="/login" />
     )
+  } else {
+    return (
+      <ThemeProvider theme={theme}>
+        <Header />
+
+        <Grid container component="main"
+          alignItems="center" justifyContent="center"
+          spacing={2} p={5}>
+
+          <Grid item xs={12}>
+            <Typography variant='h5'
+              sx={{
+                textAlign: "center",
+                fontWeight: "bold"
+              }}>
+              Post Animals
+            </Typography></Grid>
+
+          <Grid item xs={12}
+            bgcolor={"background.default"}>
+            <PostAnimalForm />
+          </Grid>
+
+          <Grid item xs={12}>
+            <Footer />
+          </Grid>
+        </Grid>
+      </ThemeProvider>
+    )
   };
-
-
-  return (
-    <ThemeProvider theme={theme}>
-      <Header />
-
-      <Grid container component="main"
-        alignItems="center" justifyContent="center"
-        spacing={2} p={5}>
-
-        <Grid item xs={12}>
-          <Typography variant='h5'
-            sx={{
-              textAlign: "center",
-              fontWeight: "bold"
-            }}>
-            Post Animals
-          </Typography></Grid>
-
-        <Grid item xs={12}
-          bgcolor={"background.default"}>
-          <PostAnimalForm />
-        </Grid>
-
-        <Grid item xs={12}>
-          <Footer />
-        </Grid>
-      </Grid>
-
-    </ThemeProvider>
-  )
 }
 
 export default PostAnimalsPage;

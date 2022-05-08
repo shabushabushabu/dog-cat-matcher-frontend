@@ -8,9 +8,10 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import AnimalCard from "../components/AnimalCard";
 
+import { isLogin } from '../functions/Authen';
+
 import ShabuImage from "../figures/SHABU_profile3.jpg";
 
-import { isLogin } from '../functions/Authen';
 
 const theme = createTheme({
   palette: {
@@ -75,48 +76,46 @@ function AdoptAnimalsPage() {
     return (
       <Navigate to="/login" />
     )
+  } else {
+    return (
+      <ThemeProvider theme={theme}>
+        <Header />
+
+        <Grid container component="main"
+          alignItems="center" justifyContent="center"
+          spacing={2} p={5}>
+
+          <Grid item xs={12}>
+            <Typography variant='h5'
+              sx={{
+                textAlign: "center",
+                fontWeight: "bold"
+              }}>
+              Adopt Animals
+            </Typography></Grid>
+
+          <Grid item xs={12}>
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                // backgroundColor: "purple",
+                alignContent: "center",
+                justifyContent: "center"
+              }}>
+              {animalCards}
+            </div>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Footer />
+          </Grid>
+        </Grid>
+      </ThemeProvider>
+    )
   };
-
-
-  return (
-    <ThemeProvider theme={theme}>
-      <Header />
-
-      <Grid container component="main"
-        alignItems="center" justifyContent="center"
-        spacing={2} p={5}>
-
-        <Grid item xs={12}>
-          <Typography variant='h5'
-            sx={{
-              textAlign: "center",
-              fontWeight: "bold"
-            }}>
-            Adopt Animals
-          </Typography></Grid>
-
-        <Grid item xs={12}>
-
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              flexWrap: "wrap",
-              // backgroundColor: "purple",
-              alignContent: "center",
-              justifyContent: "center"
-            }}>
-            {animalCards}
-          </div>
-        </Grid>
-
-        <Grid item xs={12}>
-          <Footer />
-        </Grid>
-      </Grid>
-
-    </ThemeProvider>
-  )
 }
 
 export default AdoptAnimalsPage;
