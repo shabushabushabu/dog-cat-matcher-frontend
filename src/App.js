@@ -1,5 +1,3 @@
-// import logo from './logo.svg';
-import { useState } from 'react';
 import {
   BrowserRouter,
   Routes,
@@ -12,6 +10,7 @@ import HomePage from './pages/Home';
 import SignInSide from './pages/Login';
 import AdoptAnimalsPage from './pages/AdoptAnimals';
 import PostAnimalsPage from './pages/PostAnimals';
+import CEOPage from './pages/CEO';
 
 function App() {
   return (
@@ -19,28 +18,13 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigate to ="/login"/>} />
-          {/* /home check if login (/ = index) -> not -> login */}
           <Route path="/login" element={<SignInSide />} />
           <Route path="/home" element={<HomePage />} />
+          <Route path="/home/ceo" element={<CEOPage />} />
           <Route path="/home/adoptanimals" element={<AdoptAnimalsPage />} />
           <Route path="/home/postanimals" element={<PostAnimalsPage />} />
         </Routes>
       </BrowserRouter>
-
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
     </div>
   );
 }
