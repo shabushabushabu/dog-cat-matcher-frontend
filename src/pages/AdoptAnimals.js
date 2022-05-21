@@ -1,37 +1,17 @@
 import { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import AnimalCard from "../components/AnimalCard";
+import DefaultTheme from '../components/DefaultTheme';
 
 import { isLogin } from '../functions/Authen';
 
 import DefaultImage from "../figures/SHABU_profile3.jpg";
-
-
-const theme = createTheme({
-  palette: {
-    background: {
-      default: "#ffebee"
-    },
-    primary: {
-      main: "#d7a8df",
-    },
-    secondary: {
-      main: '#84c887',
-    },
-    error: {
-      main: "#f6a5c0"
-    },
-    warning: {
-      main: "#ffbba7"
-    }
-  }
-});
 
 const animalData = [
   { name: "Shabu1", description: "A very lovely dog who loves salmon and beef. He poos 3 times a day and is scared of cats", photoUrls: [DefaultImage], tags: ["Corgi", "Dog", "Lovely", "Salmon", "Beef"] },
@@ -78,7 +58,7 @@ function AdoptAnimalsPage() {
     )
   } else {
     return (
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={DefaultTheme}>
         <Header />
 
         <Grid container component="main"
