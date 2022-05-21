@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
-import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -27,7 +25,7 @@ import { ThemeProvider } from '@mui/material/styles';
 
 import DefaultTheme from './DefaultTheme';
 
-import CorgiImage from "../figures/SHABU_profile4.jpg";
+import CorgiImage from "../figures/shabu04.jpg";
 
 import {removeTokens} from '../functions/Authen';
 
@@ -40,7 +38,7 @@ function Header(props) {
 
     const linkPages = [
         { pageName: "Home", pageUrl: "/home", pageIcon: HomeIcon },
-        { pageName: "Get to know the CEO", pageUrl: "/login", pageIcon: PetsIcon },
+        { pageName: "Get to know the CEO", pageUrl: "/home/ceo", pageIcon: PetsIcon },
         { pageName: "Adopt Animals", pageUrl: "/home/adoptanimals", pageIcon: HomeIcon },
         { pageName: "Post Animals", pageUrl: "/home/postanimals", pageIcon: PetsIcon }
     ]

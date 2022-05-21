@@ -18,7 +18,7 @@ import DefaultTheme from '../components/DefaultTheme';
 import { saveTokens } from '../functions/Authen';
 
 import Footer from "../components/Footer"
-import CEOImage from "../figures/IMG_4700.JPG"
+import CEOImage from "../figures/shabu10.jpg"
 
 function SignInModel() {
   const [email, setEmail] = useState("");

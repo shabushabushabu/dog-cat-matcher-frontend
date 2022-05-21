@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material/styles';
 
-import BackgroundImage from "../figures/SHABU_bg1.jpg";
+import BackgroundImage from "../figures/shabu01.jpg";
 
 const DefaultTheme = createTheme({
     BackgroundImage: `url(${BackgroundImage})`,

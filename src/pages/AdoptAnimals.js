@@ -11,7 +11,7 @@ import DefaultTheme from '../components/DefaultTheme';
 
 import { isLogin } from '../functions/Authen';
 
-import DefaultImage from "../figures/SHABU_profile3.jpg";
+import DefaultImage from "../figures/shabu03.jpg";
 
 const animalData = [
   { name: "Shabu1", description: "A very lovely dog who loves salmon and beef. He poos 3 times a day and is scared of cats", photoUrls: [DefaultImage], tags: ["Corgi", "Dog", "Lovely", "Salmon", "Beef"] },

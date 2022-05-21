@@ -11,8 +11,8 @@ import DefaultTheme from '../components/DefaultTheme';
 
 import { isLogin } from '../functions/Authen';
 
-import AdoptImage from "../figures/SHABU6.jpg";
-import PostImage from "../figures/SHABU7.jpg";
+import AdoptImage from "../figures/shabu06.jpg";
+import PostImage from "../figures/shabu07.jpg";
 
 const pageData = [
   { pageUrl: "/home/adoptanimals", imageUrl: AdoptImage, pageTitle: "Adopt Animals", pageDescription: "Be your dogs and cats' forever home" },
