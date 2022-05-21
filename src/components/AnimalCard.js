@@ -10,28 +10,9 @@ import Typography from '@mui/material/Typography';
 import PetsIcon from '@mui/icons-material/Pets';
 import { styled } from '@mui/material/styles';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 
-const theme = createTheme({
-    palette: {
-        background: {
-            default: "#ffebee",
-            light: "#ffeff1"
-        },
-        primary: {
-            main: "#d7a8df", //  #ce93d8 #d7a8df #dfb9e5
-        },
-        secondary: {
-            main: '#84c887',
-        },
-        error: {
-            main: "#f6a5c0"
-        },
-        warning: {
-            main: "#ffbba7"
-        }
-    }
-});
+import DefaultTheme from './DefaultTheme';
 
 const BootstrapTooltip = styled(({ className, ...props }) => (
     <Tooltip {...props} arrow classes={{ popper: className }} />
@@ -47,7 +28,7 @@ const BootstrapTooltip = styled(({ className, ...props }) => (
 function AnimalCard(props) {
 
     return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={DefaultTheme}>
             <Card
                 sx={{ width: 250, m: 3, textAlign: "left", bgcolor:"background.light" }}>
                 <CardHeader

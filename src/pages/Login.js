@@ -9,36 +9,16 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { styled } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import Tooltip from '@mui/material/Tooltip';
 
-import Footer from "../components/Footer"
-import CEOImage from "../figures/IMG_4700.JPG"
-
 import SignUpModel from '../components/Signup';
+import DefaultTheme from '../components/DefaultTheme';
 
 import { saveTokens } from '../functions/Authen';
 
-const theme = createTheme({
-  palette: {
-    background: {
-      default: "#ffebee"
-    },
-    primary: {
-      main: "#d7a8df",
-    },
-    secondary: {
-      main: '#84c887',
-    },
-    error: {
-      main: "#f6a5c0"
-    },
-    warning: {
-      main: "#ffbba7"
-    }
-  }
-});
+import Footer from "../components/Footer"
+import CEOImage from "../figures/IMG_4700.JPG"
 
 function SignInModel() {
   const [email, setEmail] = useState("");
@@ -82,7 +62,7 @@ function SignInModel() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={DefaultTheme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
         <Tooltip title="CEO" followCursor>
           <Grid item
@@ -159,6 +139,3 @@ function SignInModel() {
 }
 
 export default SignInModel;
-
-// if password correct goto home
-// difference betwee  Navigate/useNavigate

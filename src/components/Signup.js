@@ -16,25 +16,7 @@ import DatePicker from '@mui/lab/DatePicker';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const theme = createTheme({
-    palette: {
-        background: {
-            default: "#ffebee"
-        },
-        primary: {
-            main: "#d7a8df",
-        },
-        secondary: {
-            main: '#84c887',
-        },
-        error: {
-            main: "#f6a5c0"
-        },
-        warning: {
-            main: "#ffbba7"
-        }
-    }
-});
+import DefaultTheme from './DefaultTheme';
 
 function SignUpModel() {
     const [isOpen, setOpen] = useState(false);
@@ -86,7 +68,7 @@ function SignUpModel() {
     )
 
     return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={DefaultTheme}>
             <Modal
                 open={isOpen}
                 onClose={() => setOpen(false)}

@@ -11,28 +11,7 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Chip from '@mui/material/Chip';
 import Autocomplete from '@mui/material/Autocomplete';
-import { createTheme, styled } from '@mui/material/styles';
-
-const theme = createTheme({
-    palette: {
-        background: {
-            default: "#ffebee"
-        },
-        primary: {
-            main: "#ce93d8",
-        },
-        secondary: {
-            main: '#84c887',
-        },
-        error: {
-            main: "#f6a5c0"
-        },
-        warning: {
-            main: "#ffbba7"
-        }
-    }
-});
-
+import { styled } from '@mui/material/styles';
 
 const defaultTags = [
     'Dog',

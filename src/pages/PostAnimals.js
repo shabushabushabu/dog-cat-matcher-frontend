@@ -5,29 +5,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PostAnimalForm from "../components/PostAnimalForm";
+import DefaultTheme from '../components/DefaultTheme';
 
 import { isLogin } from '../functions/Authen';
-
-const theme = createTheme({
-  palette: {
-    background: {
-      default: "#ffebee"
-    },
-    primary: {
-      main: "#ce93d8",
-    },
-    secondary: {
-      main: '#84c887',
-    },
-    error: {
-      main: "#f6a5c0"
-    },
-    warning: {
-      main: "#ffbba7"
-    }
-  }
-});
-
 
 function PostAnimalsPage() {
 
@@ -37,7 +17,7 @@ function PostAnimalsPage() {
     )
   } else {
     return (
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={DefaultTheme}>
         <Header />
 
         <Grid container component="main"

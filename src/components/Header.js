@@ -23,32 +23,13 @@ import HomeIcon from '@mui/icons-material/Home';
 import PetsIcon from '@mui/icons-material/Pets';
 import { Link } from 'react-router-dom';
 
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
+
+import DefaultTheme from './DefaultTheme';
 
 import CorgiImage from "../figures/SHABU_profile4.jpg";
 
 import {removeTokens} from '../functions/Authen';
-
-const theme = createTheme({
-    palette: {
-        background: {
-            default: "#ffebee"
-        },
-        primary: {
-            main: "#d7a8df",
-        },
-        secondary: {
-            main: '#84c887',
-        },
-        error: {
-            main: "#f6a5c0"
-        },
-        warning: {
-            main: "#ffbba7"
-        }
-    }
-});
-
 
 function Header(props) {
     const { window } = props;
@@ -65,7 +46,7 @@ function Header(props) {
     ]
 
     const drawer = (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={DefaultTheme}>
             <Toolbar
                 variant="dense" />
             <Divider />
@@ -101,7 +82,7 @@ function Header(props) {
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={DefaultTheme}>
             <Box sx={{ marginBottom: 2 }}>
                 <AppBar position="static">
                     {/* <Container maxWidth="xl"> */}
