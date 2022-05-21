@@ -1,6 +1,5 @@
 import { Navigate } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import Header from "../components/Header";
@@ -8,9 +7,6 @@ import Footer from "../components/Footer";
 import PostAnimalForm from "../components/PostAnimalForm";
 
 import { isLogin } from '../functions/Authen';
-
-import CorgiImage from "../figures/SHABU_profile.jpg";
-
 
 const theme = createTheme({
   palette: {
@@ -46,18 +42,10 @@ function PostAnimalsPage() {
 
         <Grid container component="main"
           alignItems="center" justifyContent="center"
-          spacing={2} p={5}>
+          spacing={2} p={5} minHeight="100vh">
 
-          <Grid item xs={12}>
-            <Typography variant='h5'
-              sx={{
-                textAlign: "center",
-                fontWeight: "bold"
-              }}>
-              Post Animals
-            </Typography></Grid>
-
-          <Grid item xs={12}
+          <Grid item xs={8} md={6} sx={{ boxShadow: 10 }}
+            alignItems="center" justifyContent="center"
             bgcolor={"background.default"}>
             <PostAnimalForm />
           </Grid>
