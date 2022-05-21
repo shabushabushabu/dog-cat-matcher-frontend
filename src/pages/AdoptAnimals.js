@@ -10,7 +10,7 @@ import AnimalCard from "../components/AnimalCard";
 
 import { isLogin } from '../functions/Authen';
 
-import ShabuImage from "../figures/SHABU_profile3.jpg";
+import DefaultImage from "../figures/SHABU_profile3.jpg";
 
 
 const theme = createTheme({
@@ -34,11 +34,11 @@ const theme = createTheme({
 });
 
 const animalData = [
-  { name: "Shabu1", description: "A very lovely dog who loves salmon and beef. He poos 3 times a day and is scared of cats", photoUrls: [ShabuImage], tags: ["Corgi", "Dog", "Lovely", "Salmon", "Beef"] },
-  { name: "Zhabu2", description: "A fat dog with no tail. He barks at almost everything", photoUrls: [ShabuImage], tags: ["Corgi", "Dog", "Peach"] },
-  { name: "Shabu3", description: "A corgi dog", photoUrls: [ShabuImage], tags: ["Corgi", "Dog"] },
-  { name: "Zhabu4", description: "A pig-like dog. People thinks that he's a pig, but he's actually a dog", photoUrls: [ShabuImage], tags: ["Corgi", "Pig", "Pork"] },
-  { name: "Shabu5", description: "An eating dog. 150 IQ corgi who can't even catch birds", photoUrls: [ShabuImage], tags: ["Corgi", "Smart", "ShabuHatesBirds"] },
+  { name: "Shabu1", description: "A very lovely dog who loves salmon and beef. He poos 3 times a day and is scared of cats", photoUrls: [DefaultImage], tags: ["Corgi", "Dog", "Lovely", "Salmon", "Beef"] },
+  { name: "Zhabu2", description: "A fat dog with no tail. He barks at almost everything", photoUrls: [DefaultImage], tags: ["Corgi", "Dog", "Peach"] },
+  { name: "Shabu3", description: "A corgi dog", photoUrls: [DefaultImage], tags: ["Corgi", "Dog"] },
+  { name: "Zhabu4", description: "A pig-like dog. People thinks that he's a pig, but he's actually a dog", photoUrls: [DefaultImage], tags: ["Corgi", "Pig", "Pork"] },
+  { name: "Shabu5", description: "An eating dog. 150 IQ corgi who can't even catch birds", photoUrls: [DefaultImage], tags: ["Corgi", "Smart", "ShabuHatesBirds"] },
 ]
 
 
@@ -46,7 +46,7 @@ function AdoptAnimalsPage() {
   const [animalList, setAnimalList] = useState([]);
 
   useEffect(() => {
-    fetch("/api/animalList", {
+    fetch("/api/animals", {
       "method": "GET",
       headers: {
         "Content-Type": "application/json"
@@ -64,9 +64,9 @@ function AdoptAnimalsPage() {
       <AnimalCard
         name={animal.name}
         description={animal.description}
-        // photoUrl={animal.photoUrls[
-        //   Math.floor(Math.random() * animal.photoUrls.length)]}
-        photoUrl={ShabuImage}
+        photoUrl={animal.photoUrls.length > 0 ?
+          animal.photoUrls[
+          Math.floor(Math.random() * animal.photoUrls.length)] : DefaultImage}
         tags={animal.tags}
       />
     )
